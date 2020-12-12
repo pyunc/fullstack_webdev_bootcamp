@@ -8,16 +8,19 @@ const app = express();
 app.get("/",function(req, res){
 
     const url =  "https://api.kanye.rest/"
+    const name = "Paulo"
+    
 
     https.get(url, function(response){
         console.log(response.statusCode);
         
         response.on('data',function(data){
             const joke = JSON.parse(data)
-            // console.log(joke.quote)
+            console.log(joke.quote)
 
-        res.write("<p> The joke is:" + joke.quote + "</p>")
-        res.write("<h2> But wait, this joke is better:" + joke.quote + "</h2>")
+        
+            res.write("<h1> Todays inspiration drop" + " for " + name + "</h1>")
+            res.write("<h1>" + joke.quote + "</h1>")
         res.send()
 
         })
