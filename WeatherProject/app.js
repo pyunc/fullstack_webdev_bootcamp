@@ -5,6 +5,7 @@ const app = express();
 const bodyParser = require('body-parser');
 
 
+
 app.use(bodyParser.urlencoded({
     extended: true
 }));
@@ -15,28 +16,58 @@ app.get("/", function (req, res) {
 });
 
 
-
 app.post("/", function (req, res) {
 
-    const url = "https://api.kanye.rest/"
-    const name = req.body.input_name
+    var firstName = req.body.fName;
+    var lastName = req.body.lName;
+    var email = req.body.email;
+    var phone = req.body.phone;
 
-    https.get(url, function (response) {
-        console.log(response.statusCode);
+    var data = {
+        members: [{
+            email_address: email,
+            status: "subscribed",
+            merge_fields: {
+                FNAME: firstName,
+                LNAME: lastName,
+                PHONE: phone
+            },
 
+        }]
+    }
+
+    var jsonData = JSON.stringify(data)
+
+    const list_id = '926fcb907f'
+
+    const url = 'https://us7.api.mailchimp.com/3.0/lists/926fcb907f'
+
+    const options = {
+        method: 'POST',
+        auth: 'pauloyc:1fdaee9c498db66a905510db048f4cb6-us7'
+    }
+
+    const request = https.request(url, options, function (response) {
         response.on('data', function (data) {
-            const joke = JSON.parse(data)
-            console.log(joke.quote)
-
-
-            res.write("<h1> Todays inspiration drop" + " for " + name + "</h1>")
-            res.write("<h1>" + joke.quote + "</h1>")
-            res.send()
+            console.log(JSON.parse(data));
 
         })
+
     })
+
+    request.write(jsonData);
+    request.end();
+
+
 })
 
-app.listen(5000, function (req, res) {
+app.listen(3000, function (req, res) {
     console.log("Server is up and running on port 3000")
 })
+
+
+// apikey
+// 1fdaee9c498db66a905510db048f4cb6-us7
+
+// audience
+// 926fcb907f
