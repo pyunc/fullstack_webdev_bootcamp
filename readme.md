@@ -17,3 +17,11 @@ I joined a Full Stack Web Development BootCamp and several side projects were as
 11-13-20
 
 The **first project**  is a personal page using only HTML with some personal information. Althought very simple, famous professors from the computer /  engineering department have same structure home page. Kind funny by the way. There is a portuguese expression : 'Em casa de ferreiro, o colher é de pau'. 
+
+11-21-20
+
+The **Second project**  is a tinder version for dog using HTML + CSS. It is a static page. Althought very simple, famous professors from the computer /  engineering department have same structure home page. Kind funny by the way. There is a portuguese expression : 'Em casa de ferreiro, o colher é de pau'. 
+
+12-17-20
+
+The **Third project**  is a signup page for newsletters using Node.js, Express and Bootstrap in the frontpage. Through MailChimp API, informations filled in the form are sent to a cloud DB of MailChimp. Still need to be deployed in a online server such as Heroku, but working perfectly in a local server. 

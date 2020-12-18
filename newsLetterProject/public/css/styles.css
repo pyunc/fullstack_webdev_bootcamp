@@ -46,3 +46,16 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.button{
+  background-color: #6c3cdc;
+  border-color: #6c3cdc;
+}
+
+
+.button:hover {
+  opacity: .7; /* reduce the transparency of the foreground image by 10%, allowing the white background to show through 10%. */
+  border-color: #6c3cdc;
+  background-color: #6c3cdc;
+}
+

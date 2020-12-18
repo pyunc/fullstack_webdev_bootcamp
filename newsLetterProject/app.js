@@ -28,8 +28,8 @@ app.post("/", function (req, res) {
     var lastName = req.body.sName;
     var email = req.body.email;
 
-    console.log(firstName,lastName,email)
-    
+    console.log(firstName, lastName, email)
+
 
     var data = {
         members: [{
@@ -38,7 +38,7 @@ app.post("/", function (req, res) {
             merge_fields: {
                 FNAME: firstName,
                 LNAME: lastName,
-    
+
             },
 
         }]
@@ -55,21 +55,30 @@ app.post("/", function (req, res) {
         auth: 'pauloyc:1fdaee9c498db66a905510db048f4cb6-us7'
     }
 
-    const request = https.request(url, options, function (response) {
+    const request = https.request(url, options, function (response){
+
+        if (response.statusCode == 200){
+            res.sendFile(__dirname+"/success.html")
+        } else{
+            res.sendFile(__dirname+"/failure.html")
+        }
+
         response.on('data', function (data) {
             console.log(JSON.parse(data));
+        });
 
-        })
-
-    })
+    });
 
     request.write(jsonData);
     request.end();
-
-
 })
 
-app.listen(3000, function (req, res) {
+
+app.post("/failure",function (req,res){
+    res.redirect("/")
+})
+
+app.listen(process.env.PORT|| 3000, function (req, res) {
     console.log("Server is up and running on port 3000")
 })
 
